@@ -62,6 +62,17 @@ app.post("/api/exercise/add",urlencodedParser,(req,res)=>{
     
   })
   // res.send("Hor byi")
+});
+
+app.get("/api/exercise/log",(req,res)=>{
+  exerciseModel.findById(req.query.userId,(err,data)=>{
+    res.json({
+      _id:data.id,
+      username:data.username,
+      log: data.exercises
+    });
+  })
+  
 })
 // Not found middleware
 app.use((req, res, next) => {
